@@ -65,6 +65,7 @@ public class AlgoVisualizer {
     private class AlgoMouseListener extends MouseAdapter {
         @Override
         public void mousePressed(MouseEvent e) {
+            e.translatePoint(0, -(algoFrame.getBounds().height-algoFrame.getCanvasHeight()));
             for (Circle circle : circles) {
                 if (circle.contain(e.getPoint())) {
                     circle.isFilled = !circle.isFilled;
