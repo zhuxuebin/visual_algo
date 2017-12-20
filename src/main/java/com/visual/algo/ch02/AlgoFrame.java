@@ -2,7 +2,6 @@ package com.visual.algo.ch02;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.geom.Ellipse2D;
 
 /**
  * Created by 01368080 on 2017/12/19.
@@ -10,8 +9,9 @@ import java.awt.geom.Ellipse2D;
 public class AlgoFrame extends JFrame {
     private int canvasWidth;
     private int canvasHeight;
+    private Circle[] circles;
 
-    public AlgoFrame(String title, int canvasWidth, int canvasHeight){
+    public AlgoFrame(String title, int canvasWidth, int canvasHeight) {
         super(title);
         this.canvasWidth = canvasWidth;
         this.canvasHeight = canvasHeight;
@@ -25,7 +25,7 @@ public class AlgoFrame extends JFrame {
         setVisible(true);
     }
 
-    public AlgoFrame(String title){
+    public AlgoFrame(String title) {
         this(title, 1024, 768);
     }
 
@@ -37,9 +37,14 @@ public class AlgoFrame extends JFrame {
         return canvasHeight;
     }
 
-    private class AlgoCanvas extends JPanel{
+    public void render(Circle[] circles) {
+        this.circles = circles;
+        repaint(); //重新画圆
+    }
 
-        public AlgoCanvas(){
+    private class AlgoCanvas extends JPanel {
+
+        public AlgoCanvas() {
             //双缓存
             super(true);
         }
@@ -54,14 +59,18 @@ public class AlgoFrame extends JFrame {
             g2d.addRenderingHints(hints);
 
 
-            int strokeWidth = 5;
-            g2d.setStroke(new BasicStroke(strokeWidth, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND));
+            AlgoVisHelper.setStroke(g2d, 2);
+            AlgoVisHelper.setColor(g2d, Color.RED);
+            for (Circle circle : circles) {
+                if (circle.isFilled) {
+                    AlgoVisHelper.fillCircle(g2d, circle.x, circle.y, circle.getR());
+                } else {
+                    AlgoVisHelper.strokeCircle(g2d, circle.x, circle.y, circle.getR());
+                }
+            }
 
-            g2d.setColor(Color.RED);
-            AlgoVisHelper.drawCircle(g2d, canvasWidth/2, canvasHeight/2, 200);
-
-            g2d.setColor(Color.BLUE);
-            AlgoVisHelper.fillCircle(g2d, canvasWidth/2, canvasHeight/2, 200);
+//            AlgoVisHelper.setColor(g2d, Color.BLUE);
+//            AlgoVisHelper.fillCircle(g2d, canvasWidth/2, canvasHeight/2, 200);
         }
 
         @Override
