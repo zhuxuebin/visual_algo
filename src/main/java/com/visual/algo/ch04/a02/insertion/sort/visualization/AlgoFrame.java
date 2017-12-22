@@ -1,4 +1,4 @@
-package com.visual.algo.ch02;
+package com.visual.algo.ch04.a02.insertion.sort.visualization;
 
 import com.visual.algo.utils.AlgoVisHelper;
 
@@ -11,7 +11,6 @@ import java.awt.*;
 public class AlgoFrame extends JFrame {
     private int canvasWidth;
     private int canvasHeight;
-    private Circle[] circles;
 
     public AlgoFrame(String title, int canvasWidth, int canvasHeight) {
         super(title);
@@ -39,8 +38,11 @@ public class AlgoFrame extends JFrame {
         return canvasHeight;
     }
 
-    public void render(Circle[] circles) {
-        this.circles = circles;
+    // 设置成自己的数据
+    private InsertionSortData data;
+
+    public void render(InsertionSortData data) {
+        this.data = data;
         repaint(); //重新画圆
     }
 
@@ -60,19 +62,20 @@ public class AlgoFrame extends JFrame {
             RenderingHints hints = new RenderingHints(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
             g2d.addRenderingHints(hints);
 
-
-            AlgoVisHelper.setStroke(g2d, 2);
-            AlgoVisHelper.setColor(g2d, Color.RED);
-            for (Circle circle : circles) {
-                if (circle.isFilled) {
-                    AlgoVisHelper.fillCircle(g2d, circle.x, circle.y, circle.getR());
+            // 具体图形绘制
+            int w = canvasWidth / data.N();
+            for (int i = 0; i < data.N(); i++) {
+                if(i < data.orderedIndex){
+                    AlgoVisHelper.setColor(g2d, AlgoVisHelper.Red);
                 } else {
-                    AlgoVisHelper.strokeCircle(g2d, circle.x, circle.y, circle.getR());
+                    AlgoVisHelper.setColor(g2d, AlgoVisHelper.Grey);
                 }
-            }
 
-//            AlgoVisHelper.setColor(g2d, Color.BLUE);
-//            AlgoVisHelper.fillCircle(g2d, canvasWidth/2, canvasHeight/2, 200);
+                if(data.currentCompareIndex == i){
+                    AlgoVisHelper.setColor(g2d, AlgoVisHelper.LightBlue);
+                }
+                AlgoVisHelper.fillRectangle(g2d, i * w + 1, canvasHeight - data.get(i), w - 1, data.get(i));
+            }
         }
 
         @Override

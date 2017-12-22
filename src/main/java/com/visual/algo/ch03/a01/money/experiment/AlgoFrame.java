@@ -1,4 +1,4 @@
-package com.visual.algo.ch02;
+package com.visual.algo.ch03.a01.money.experiment;
 
 import com.visual.algo.utils.AlgoVisHelper;
 
@@ -11,7 +11,6 @@ import java.awt.*;
 public class AlgoFrame extends JFrame {
     private int canvasWidth;
     private int canvasHeight;
-    private Circle[] circles;
 
     public AlgoFrame(String title, int canvasWidth, int canvasHeight) {
         super(title);
@@ -39,9 +38,10 @@ public class AlgoFrame extends JFrame {
         return canvasHeight;
     }
 
-    public void render(Circle[] circles) {
-        this.circles = circles;
-        repaint(); //重新画圆
+    private int[] data;
+    public void render(int[] data) {
+        this.data = data;
+        repaint(); //重新画图
     }
 
     private class AlgoCanvas extends JPanel {
@@ -60,19 +60,17 @@ public class AlgoFrame extends JFrame {
             RenderingHints hints = new RenderingHints(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
             g2d.addRenderingHints(hints);
 
-
-            AlgoVisHelper.setStroke(g2d, 2);
-            AlgoVisHelper.setColor(g2d, Color.RED);
-            for (Circle circle : circles) {
-                if (circle.isFilled) {
-                    AlgoVisHelper.fillCircle(g2d, circle.x, circle.y, circle.getR());
+            //具体图形绘制
+            int w = canvasWidth/data.length;
+            for(int i=0;i<data.length;i++){
+                if(data[i] > 0) {
+                    AlgoVisHelper.setColor(g2d, AlgoVisHelper.Blue);
+                    AlgoVisHelper.fillRectangle(g2d, i * w + 1, canvasHeight / 2 - data[i], w - 1, data[i]);
                 } else {
-                    AlgoVisHelper.strokeCircle(g2d, circle.x, circle.y, circle.getR());
+                    AlgoVisHelper.setColor(g2d, AlgoVisHelper.Red);
+                    AlgoVisHelper.fillRectangle(g2d, i*w + 1, canvasHeight/2, w-1, -data[i]);
                 }
             }
-
-//            AlgoVisHelper.setColor(g2d, Color.BLUE);
-//            AlgoVisHelper.fillCircle(g2d, canvasWidth/2, canvasHeight/2, 200);
         }
 
         @Override

@@ -31,7 +31,7 @@ public class AlgoVisualizer {
 
     //todo 动画逻辑
     private void run() {
-        //todo 编写自己的动画逻辑
+
     }
 
     //添加一个键盘事件
@@ -41,6 +41,10 @@ public class AlgoVisualizer {
 
     //添加一个鼠标事件
     private class AlgoMouseListener extends MouseAdapter {
+
+    }
+
+    public static void main(String[] args) {
 
     }
 }

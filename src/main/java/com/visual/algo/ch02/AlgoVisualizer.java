@@ -1,5 +1,7 @@
 package com.visual.algo.ch02;
 
+import com.visual.algo.utils.AlgoVisHelper;
+
 import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
@@ -41,7 +43,7 @@ public class AlgoVisualizer {
         while (true) {
             //绘制图形
             algoFrame.render(circles);
-            AlgoVisHelper.sleep(20);
+            AlgoVisHelper.pause(20);
             //更新数据
             if (isAnimated) {
                 for (Circle circle : circles) {

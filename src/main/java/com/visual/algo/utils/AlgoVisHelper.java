@@ -1,4 +1,4 @@
-package com.visual.algo.template;
+package com.visual.algo.utils;
 
 import javax.swing.*;
 import java.awt.*;
@@ -69,7 +69,7 @@ public class AlgoVisHelper {
         g2d.setColor(color);
     }
 
-    public static void sleep(int t) {
+    public static void pause(int t) {
         try {
             Thread.sleep(t);
         } catch (InterruptedException e) {
