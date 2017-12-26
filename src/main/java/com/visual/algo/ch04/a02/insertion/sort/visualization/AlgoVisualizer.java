@@ -45,6 +45,7 @@ public class AlgoVisualizer {
                 data.set(j+1,curr);
             }
         }
+        setData(data.N(),-1);
     }
 
     private void setData(int orderedIndex, int currentCompareIndex) {

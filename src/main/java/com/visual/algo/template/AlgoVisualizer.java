@@ -11,6 +11,7 @@ public class AlgoVisualizer {
 
     private AlgoFrame algoFrame;
     private Object data;
+    private static int DELAY;
 
     public AlgoVisualizer(int screenWidth, int screenHeight, int N) {
 
