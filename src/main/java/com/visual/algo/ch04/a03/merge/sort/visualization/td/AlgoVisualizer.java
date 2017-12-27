@@ -5,6 +5,7 @@ import com.visual.algo.utils.AlgoVisHelper;
 import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.MouseAdapter;
+import java.util.Arrays;
 
 /**
  * Created by 01368080 on 2017/12/20.
@@ -53,22 +54,20 @@ public class AlgoVisualizer {
     public void merge(int[] arrCopy, int begin, int mid, int end) {
         //begin-mid,mid+1-end
         int i = begin, j = mid + 1, index = i;
+        int[] aux = Arrays.copyOfRange(data.numbers, begin, end+1);
         while (i <= mid && j <= end) {
             if (data.get(i) <= data.get(j)) {
-                arrCopy[index++] = data.get(i++);
+                data.set(index++,aux[i++]);
             } else {
-                arrCopy[index++] = data.get(j++);
+                arrCopy[index++] = aux[j++];
             }
             setData(begin,end,index-1);
         }
         while (i <= mid) {
-            arrCopy[index++] = data.get(i++);
+            arrCopy[index++] = aux[i++];
         }
         while (j <= end) {
-            arrCopy[index++] = data.get(j++);
-        }
-        for (int k = begin; k <= end; k++) {
-            data.set(k, arrCopy[k]);
+            arrCopy[index++] = aux[j++];
         }
     }
 
@@ -91,6 +90,6 @@ public class AlgoVisualizer {
     }
 
     public static void main(String[] args) {
-        new AlgoVisualizer(800,600,100);
+        new AlgoVisualizer(800,600,10);
     }
 }
