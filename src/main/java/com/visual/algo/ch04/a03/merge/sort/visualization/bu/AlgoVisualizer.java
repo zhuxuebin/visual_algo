@@ -8,7 +8,7 @@ import java.awt.event.MouseAdapter;
 import java.util.Arrays;
 
 /**
- * 自顶向下
+ * 自下向上
  * Created by 01368080 on 2017/12/20.
  */
 public class AlgoVisualizer {
@@ -33,44 +33,43 @@ public class AlgoVisualizer {
 
     //动画逻辑
     private void run() {
-        setData(-1,-1,-1);
+        setData(-1, -1, -1);
         sort(0, data.N() - 1);
-        setData(0,data.N()-1,data.N()-1);
+        setData(0, data.N() - 1, data.N() - 1);
     }
 
     public void sort(int begin, int end) {
         if (begin >= end) {
             return;
         }
-        setData(begin,end,-1);
-        //divide
-        int mid = begin + (end - begin) / 2;
-        sort(begin, mid);
-        sort(mid + 1, end);
-        //merge
-        merge(begin, mid, end);
+        for (int step = 1; step < data.N(); step *= 2) {
+            //归并arr[i...i+step-1] arr[i+step...i+2*step-1]
+            for(int i=0;i < data.N()-step;i += 2*step){
+                merge(i,i+step-1,Math.min(i+2*step-1,data.N()-1)); //防止越界
+            }
+        }
     }
 
     //需要改造下
     public void merge(int begin, int mid, int end) {
         //begin-mid,mid+1-end
-        int i = 0, j = mid + 1-begin, index = begin;
-        int[] aux = Arrays.copyOfRange(data.numbers, begin, end+1);
-        while (i <= mid-begin && j <= end-begin) {
+        int i = 0, j = mid + 1 - begin, index = begin;
+        int[] aux = Arrays.copyOfRange(data.numbers, begin, end + 1);
+        while (i <= mid - begin && j <= end - begin) {
             if (aux[i] <= aux[j]) {
                 data.numbers[index++] = aux[i++];
             } else {
                 data.numbers[index++] = aux[j++];
             }
-            setData(begin,end,index-1);
+            setData(begin, end, index - 1);
         }
-        while (i <= mid-begin) {
+        while (i <= mid - begin) {
             data.numbers[index++] = aux[i++];
-            setData(begin,end,index-1);
+            setData(begin, end, index - 1);
         }
-        while (j <= end-begin) {
+        while (j <= end - begin) {
             data.numbers[index++] = aux[j++];
-            setData(begin,end,index-1);
+            setData(begin, end, index - 1);
         }
     }
 
@@ -93,6 +92,6 @@ public class AlgoVisualizer {
     }
 
     public static void main(String[] args) {
-        new AlgoVisualizer(800,600,100);
+        new AlgoVisualizer(800, 600, 100);
     }
 }
