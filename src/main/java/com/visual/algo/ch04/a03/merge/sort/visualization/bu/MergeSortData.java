@@ -1,7 +1,4 @@
-package com.visual.algo.ch04.a03.merge.sort.visualization.td;
-
-import java.util.Arrays;
-import java.util.Random;
+package com.visual.algo.ch04.a03.merge.sort.visualization.bu;
 
 
 public class MergeSortData {

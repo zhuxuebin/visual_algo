@@ -1,4 +1,4 @@
-package com.visual.algo.ch04.a03.merge.sort.visualization.td;
+package com.visual.algo.ch04.a03.merge.sort.visualization.bu;
 
 import com.visual.algo.utils.AlgoVisHelper;
 

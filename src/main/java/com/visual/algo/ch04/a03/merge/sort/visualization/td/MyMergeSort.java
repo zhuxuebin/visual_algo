@@ -33,10 +33,10 @@ public class MyMergeSort {
         }
         //divide
         int mid = begin + (end - begin) / 2;
-        sort(arr, arrCopy,0, mid);
+        sort(arr, arrCopy,begin, mid);
         sort(arr, arrCopy,mid + 1, end);
         //merge
-        merge(arr, arrCopy,0, mid, end);
+        merge(arr, arrCopy,begin, mid, end);
     }
 
     public static void merge(int[] arr, int[] arrCopy, int begin, int mid, int end) {
