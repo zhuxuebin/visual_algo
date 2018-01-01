@@ -11,7 +11,7 @@ public class AlgoVisualizer {
 
     private AlgoFrame algoFrame;
     private Object data;
-    private static int DELAY;
+    private static int DELAY = 20;
 
     public AlgoVisualizer(int screenWidth, int screenHeight, int N) {
 
@@ -46,6 +46,6 @@ public class AlgoVisualizer {
     }
 
     public static void main(String[] args) {
-
+        new AlgoVisualizer(800,800,100);
     }
 }

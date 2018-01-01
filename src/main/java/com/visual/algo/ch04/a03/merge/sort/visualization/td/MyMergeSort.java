@@ -1,5 +1,7 @@
 package com.visual.algo.ch04.a03.merge.sort.visualization.td;
 
+import com.visual.algo.utils.ArrayUtils;
+
 /**
  * Created by xuery on 2017/12/24.
  */
@@ -10,13 +12,7 @@ public class MyMergeSort {
     public static void main(String[] args) {
         int[] arr = new int[]{20,10,11,9,3,15};
         MyMergeSort.mergeSort(arr);
-        printArr(arr);
-    }
-
-    public static void printArr(int[] arr){
-        for(int i=0;i<arr.length;i++){
-            System.out.println(arr[i]);
-        }
+        ArrayUtils.printArr(arr);
     }
 
     public static void mergeSort(int[] arr) {
