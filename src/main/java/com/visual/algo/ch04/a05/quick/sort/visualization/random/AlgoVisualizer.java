@@ -1,7 +1,6 @@
-package com.visual.algo.ch04.a04.quick.sort.visualization;
+package com.visual.algo.ch04.a05.quick.sort.visualization.random;
 
 import com.visual.algo.utils.AlgoVisHelper;
-import com.visual.algo.utils.ArrayUtils;
 
 import java.awt.*;
 import java.awt.event.KeyAdapter;
@@ -16,10 +15,10 @@ public class AlgoVisualizer {
     private QuickSortData data;
     private static int DELAY = 40;
 
-    public AlgoVisualizer(int screenWidth, int screenHeight, int N) {
+    public AlgoVisualizer(int screenWidth, int screenHeight, int N, QuickSortData.Type dataType) {
 
         //初始化数据
-        data = new QuickSortData(N, screenHeight);
+        data = new QuickSortData(N, screenHeight, dataType);
 
 
         //初始化视图
@@ -31,6 +30,10 @@ public class AlgoVisualizer {
         });
     }
 
+    public AlgoVisualizer(int sceneWidth, int sceneHeight, int N){
+        this(sceneWidth, sceneHeight, N, QuickSortData.Type.Default);
+    }
+
     //动画逻辑
     private void run() {
         setData(-1, -1, -1, -1, -1);
@@ -39,7 +42,10 @@ public class AlgoVisualizer {
     }
 
     public int partition3(int left, int right) {
+        int p = (int)(Math.random()*(right-left+1))+left;
+        setData(left, right, -1, p, -1);
 
+        data.swap(left,p);
         int v = data.numbers[left];
         setData(left, right, -1, left, -1);
         int j = left; //arr[left+1...j] arr[j+1...right]
@@ -93,6 +99,6 @@ public class AlgoVisualizer {
     }
 
     public static void main(String[] args) {
-        new AlgoVisualizer(800,800,100);
+        new AlgoVisualizer(800,600,100, QuickSortData.Type.NearlyOrdered);
     }
 }
