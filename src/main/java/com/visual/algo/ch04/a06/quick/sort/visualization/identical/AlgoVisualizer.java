@@ -1,4 +1,4 @@
-package com.visual.algo.ch04.a05.quick.sort.visualization.random;
+package com.visual.algo.ch04.a06.quick.sort.visualization.identical;
 
 import com.visual.algo.utils.AlgoVisHelper;
 
@@ -99,6 +99,6 @@ public class AlgoVisualizer {
     }
 
     public static void main(String[] args) {
-        new AlgoVisualizer(800,800,100, QuickSortData.Type.NearlyOrdered);
+        new AlgoVisualizer(800,800,100, QuickSortData.Type.Identical);
     }
 }
