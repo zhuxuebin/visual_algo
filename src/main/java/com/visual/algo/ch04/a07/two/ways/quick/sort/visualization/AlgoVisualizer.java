@@ -7,6 +7,7 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.MouseAdapter;
 
 /**
+ * 一般用的快排都是双路快排
  * Created by 01368080 on 2017/12/20.
  */
 public class AlgoVisualizer {
@@ -63,6 +64,7 @@ public class AlgoVisualizer {
      * @return
      */
     public int partition(int left, int right){
+
         setData(left, right, -1, left, -1, -1);
         int v = data.get(left);
         int lb = left, rb = right;
@@ -91,8 +93,13 @@ public class AlgoVisualizer {
      * @return
      */
     public int partition4(int left, int right){
+        int p = (int)(Math.random()*(right-left+1))+left;
+        setData(left, right, -1, p, -1,-1);
+
+        data.swap(left,p);
+        int v = data.numbers[left];
         setData(left, right, -1, left, -1, -1);
-        int v = data.get(left);
+
         int lb = left + 1, rb = right;
         while(true){
             while(lb <= right && data.get(lb) < v){
