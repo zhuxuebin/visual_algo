@@ -54,6 +54,8 @@ sdown到odown转换的条件很简单，如果一个哨兵在指定时间内，�
 
 但是如果quorum >= majority，那么必须quorum数量的哨兵都授权，比如5个哨兵，quorum是5，那么必须5个哨兵都同意授权，才能执行切换
 
+说白了就是Max(quorum,majority)个哨兵授权才能完成切换
+
 6、configuration epoch
 
 哨兵会对一套redis master+slave进行监控，有相应的监控的配置
