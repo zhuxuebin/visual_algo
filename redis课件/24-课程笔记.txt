@@ -93,6 +93,7 @@ sentinel monitor mymaster 192.168.31.187 6379 2
 sentinel down-after-milliseconds mymaster 30000
 sentinel failover-timeout mymaster 60000
 sentinel parallel-syncs mymaster 1
+sentinel auth-pass mymaster redis-cache
 
 port 5000
 bind 192.168.31.19
@@ -101,6 +102,7 @@ sentinel monitor mymaster 192.168.31.187 6379 2
 sentinel down-after-milliseconds mymaster 30000
 sentinel failover-timeout mymaster 60000
 sentinel parallel-syncs mymaster 1
+sentinel auth-pass mymaster redis-cache
 
 port 5000
 bind 192.168.31.227
@@ -109,6 +111,7 @@ sentinel monitor mymaster 192.168.31.187 6379 2
 sentinel down-after-milliseconds mymaster 30000
 sentinel failover-timeout mymaster 60000
 sentinel parallel-syncs mymaster 1
+sentinel auth-pass mymaster redis-cache
 
 3、启动哨兵进程
 
