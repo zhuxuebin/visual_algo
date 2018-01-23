@@ -85,10 +85,13 @@ gem list --check redis gem
 yum install -y ruby
 yum install -y rubygems
 gem install redis
+//不一定能安装成功，具体可以参考网上教程
 
 cp /usr/local/redis-3.2.8/src/redis-trib.rb /usr/local/bin
 
+记得注释掉配置文件中的requirepass/masterauth，否则连接不上
 redis-trib.rb create --replicas 1 192.168.31.187:7001 192.168.31.187:7002 192.168.31.19:7003 192.168.31.19:7004 192.168.31.227:7005 192.168.31.227:7006
+redis-trib.rb create --replicas 1 192.168.95.135:7001 192.168.95.135:7002 192.168.95.137:7003 192.168.95.137:7004 192.168.95.138:7005 192.168.95.138:7006
 
 --replicas: 每个master有几个slave
 
