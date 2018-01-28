@@ -1,0 +1,2 @@
+
+log_json["request_module"]="product_detail_info"
